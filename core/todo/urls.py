@@ -7,7 +7,8 @@ from todo import views
 app_name = 'todo'
 
 urlpatterns = [
-    path('', views.TaskListView.as_view(), name='index'),
+    path('create/', views.TaskCreateView.as_view(), name='task-create'),
+    path('', views.TaskListView.as_view(), name='task-list'),
 ]
 
 if settings.DEBUG:

@@ -1,11 +1,11 @@
 {% extends '../parent/base.html' %}
-{# a template to show, create, edit and delete Task #}
+{# a template to show tasks #}
 {% block header %}
     TASK LIST
 {% endblock %}
 
 {% block content %}
-	{% for task in tasks %}
+    {% for task in tasks %}
         <ul>
             {% if task.is_done %}
                <li><s>{{ task.title }}</s></li>
