@@ -10,3 +10,4 @@ class TaskUpdateForm(forms.ModelForm):
     class Meta:
         model = Task
         fields = ['is_done']
+        

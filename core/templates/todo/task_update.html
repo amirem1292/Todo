@@ -1,9 +1,9 @@
 {% extends '../parent/base.html' %}
 {# a template to update tasks #}
 {% block header %}
-    TASK LIST
+    TASK UPDATE
 {% endblock %}
-
+{# check is_done field #}
 {% block content %}
     <form method="post">
     {% csrf_token %}
