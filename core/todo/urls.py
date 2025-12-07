@@ -7,8 +7,9 @@ from todo import views
 app_name = 'todo'
 
 urlpatterns = [
+    path('list/', views.TaskListView.as_view(), name='task-list'),
     path('create/', views.TaskCreateView.as_view(), name='task-create'),
-    path('', views.TaskListView.as_view(), name='task-list'),
+    path('edit/<int:pk>/', views.TaskUpdateView.as_view(), name='task-update'),
 ]
 
 if settings.DEBUG:
