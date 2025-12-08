@@ -121,3 +121,8 @@ STATIC_ROOT = BASE_DIR / 'static'
 STATICFILES_DIRS = [
     BASE_DIR / 'statics',
 ]
+
+LOGIN_REDIRECT_URL = '/todo/list/'
+LOGOUT_REDIRECT_URL = 'login'
+
+LOGIN_URL = '/todo/login/'

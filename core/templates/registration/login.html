@@ -1,0 +1,12 @@
+{% extends '../parent/base.html' %}
+{% block header %}
+	LOGIN
+{% endblock %}
+
+{% block content %}
+	<form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">enter</button>
+    </form>
+{% endblock %}
