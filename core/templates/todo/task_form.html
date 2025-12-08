@@ -1,13 +1,16 @@
 {% extends '../parent/base.html' %}
-{# a template to create tasks #}
-{% block header %}
+{# Template to create a new task #}
+
+{% block title %}
     TASK FORM
 {% endblock %}
-{# create a new Task #}
+
 {% block content %}
-    <form method="post">
+    <form method="post" class="task-form">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">add</button>
+        <div class="form-fields">
+            {{ form.as_p }} {# Form fields container #}
+        </div>
+        <button type="submit" class="btn btn-add">Add</button> {# Add button #}
     </form>
 {% endblock %}

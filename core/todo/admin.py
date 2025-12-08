@@ -3,9 +3,11 @@ from .models import *
 # Register your models here.
 
 class TaskAdmin(admin.ModelAdmin):
-    list_display = ['title', 'author', 'created_at']
+    list_display = ['title', 'author', 'created_at', 'is_done']
+    list_editable = ['is_done']
     search_fields = ('title', )
     readonly_fields = ('created_at', 'updated_at')
+    ordering = ('created_at',)
     fieldsets = (
         ('info', {'fields': ('author', 'title', 'is_done')}),
         ('date', {'fields': ('created_at', 'updated_at')}),

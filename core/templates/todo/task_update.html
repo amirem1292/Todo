@@ -1,13 +1,16 @@
 {% extends '../parent/base.html' %}
-{# a template to update tasks #}
-{% block header %}
+{# Template to update a task #}
+
+{% block title %}
     TASK UPDATE
 {% endblock %}
-{# check is_done field #}
+
 {% block content %}
-    <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">edit</button>
+    <form method="post" class="task-form">
+        {% csrf_token %}
+        <div class="form-fields">
+            {{ form.as_p }} {# Form fields container #}
+        </div>
+        <button type="submit" class="btn btn-edit">Edit</button> {# Edit button #}
     </form>
 {% endblock %}

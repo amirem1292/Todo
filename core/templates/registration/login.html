@@ -1,13 +1,16 @@
 {% extends '../parent/base.html' %}
-{% block header %}
-	LOGIN
+{# Login template #}
+
+{% block title %}
+    LOGIN
 {% endblock %}
 
 {% block content %}
-	<form method="post">
+    <form method="post" class="login-form">
         {% csrf_token %}
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <button type="submit">enter</button>
+        <div class="form-fields">
+            {{ form.as_p }} {# Form fields container #}
+        </div>
+        <button type="submit" class="btn btn-login">Enter</button> {# Login button #}
     </form>
 {% endblock %}

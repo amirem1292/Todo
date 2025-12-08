@@ -4,7 +4,7 @@ from .models import *
 class TaskCreateForm(forms.ModelForm):
     class Meta:
         model = Task
-        fields = ['author', 'title']
+        fields = ['title']
 
 class TaskUpdateForm(forms.ModelForm):
     class Meta:

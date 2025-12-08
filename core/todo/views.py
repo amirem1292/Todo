@@ -13,13 +13,20 @@ from django.contrib.auth import authenticate, login, logout
 class TaskListView(LoginRequiredMixin, ListView):
     model = Task
     context_object_name = 'tasks'
-    ordering = ['-created_at']
+    # filter tasks by their author
+    def get_queryset(self):
+        return Task.objects.filter(author=self.request.user).order_by('created_at')
 
 # create a new Task
 class TaskCreateView(LoginRequiredMixin, CreateView):
     model = Task
     form_class = TaskCreateForm
     success_url = reverse_lazy('todo:task-list')
+    # logged in user
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super(TaskCreateView, self).form_valid(form)
+
 
 # change the is_done field
 class TaskUpdateView(LoginRequiredMixin, UpdateView):
@@ -32,7 +39,7 @@ class TaskUpdateView(LoginRequiredMixin, UpdateView):
 class TaskDeleteView(LoginRequiredMixin, DeleteView):
     model = Task
     success_url = reverse_lazy('todo:task-list')
-
+    # show the name of task
     def get_context_data(self, **kwargs):
         context = super(TaskDeleteView, self).get_context_data(**kwargs)
         context['task'] = Task.objects.get(pk=self.kwargs['pk'])

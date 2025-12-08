@@ -121,8 +121,8 @@ STATIC_ROOT = BASE_DIR / 'static'
 STATICFILES_DIRS = [
     BASE_DIR / 'statics',
 ]
-
+# after login and logout
 LOGIN_REDIRECT_URL = '/todo/list/'
 LOGOUT_REDIRECT_URL = 'login'
-
+# where LoginRequiredMixin redirects when you did not log in
 LOGIN_URL = '/todo/login/'

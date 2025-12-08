@@ -1,21 +1,30 @@
 {% extends '../parent/base.html' %}
-{# a template to show tasks #}
-{% block header %}
+{# Template to show tasks #}
+
+{% block title %}
     TASK LIST
 {% endblock %}
-{# show list of tasks #}
+
 {% block content %}
+    <div class="task-header">
+        <a href="{% url 'todo:task-create' %}" class="btn btn-add">Add Task</a> {# لینک افزودن تسک جدید #}
+    </div>
+
+    <ul class="task-list">
     {% for task in tasks %}
-        <ul>
-            {% if task.is_done %}
-                <li><s>{{ task.title }}</s></li>
-                <a href="{% url 'todo:task-update' pk=task.id %}">done</a>
-                <a href="{% url 'todo:task-delete' pk=task.id %}">delete</a>
-            {% else %}
-                <li>{{ task.title }}</li>
-                <a href="{% url 'todo:task-update' pk=task.id %}">done</a>
-                <a href="{% url 'todo:task-delete' pk=task.id %}">delete</a>
-            {% endif %}
-        </ul>
-	{% endfor %}
+        <li class="task-item {% if task.is_done %}done{% endif %}">
+            <span class="task-title">
+                {% if task.is_done %}
+                    <s>{{ task.title }}</s>
+                {% else %}
+                    {{ task.title }}
+                {% endif %}
+            </span>
+            <div class="task-actions">
+                <a href="{% url 'todo:task-update' pk=task.id %}" class="btn btn-done">Done</a>
+                <a href="{% url 'todo:task-delete' pk=task.id %}" class="btn btn-delete">Delete</a>
+            </div>
+        </li>
+    {% endfor %}
+    </ul>
 {% endblock %}
