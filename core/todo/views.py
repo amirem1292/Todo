@@ -2,7 +2,7 @@ from django.contrib.auth import logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, FormView
 from .models import *
 from .forms import *
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -36,14 +36,10 @@ class TaskUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'todo/task_update.html'
 
 # delete tasks
-class TaskDeleteView(LoginRequiredMixin, DeleteView):
-    model = Task
-    success_url = reverse_lazy('todo:task-list')
-    # show the name of task
-    def get_context_data(self, **kwargs):
-        context = super(TaskDeleteView, self).get_context_data(**kwargs)
-        context['task'] = Task.objects.get(pk=self.kwargs['pk'])
-        return context
+def task_delete_view(request, pk):
+    task = Task.objects.get(pk=pk)
+    task.delete()
+    return redirect('todo:task-list')
 # there was a problem with accounts urls so, I used fbv
 # login view
 def login_view(request):
@@ -65,3 +61,4 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect('todo:task-list')
+
