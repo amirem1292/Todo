@@ -6,6 +6,9 @@
 {% endblock %}
 
 {% block content %}
+    <div class="task-header">
+        <a href="{% url 'todo:task-create' %}" class="btn btn-add">Add Task</a> {# لینک افزودن تسک جدید #}
+    </div>
 
     <ul class="task-list">
     {% for task in tasks %}
