@@ -1,4 +1,5 @@
-from django.urls import path
+from django.contrib.messages import api
+from django.urls import path, include
 from core import settings
 from django.conf.urls.static import static
 from . import views
@@ -15,6 +16,9 @@ urlpatterns = [
     # authentication
     path('login/', views.login_view, name='login'),
     path('logout/', views.logout_view, name='logout'),
+
+    # apis
+    path('api/v1/', include('todo.api.v1.urls')),
 ]
 
 if settings.DEBUG:
