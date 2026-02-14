@@ -1,10 +1,10 @@
 from django.urls import path
 from .views import TaskViewSet
 from rest_framework.routers import DefaultRouter
+
 router = DefaultRouter()
-router.register('tasks', TaskViewSet, basename='tasks')
+router.register("tasks", TaskViewSet, basename="tasks")
 urlpatterns = router.urls
 
 
-app_name = 'api-v1'
-
+app_name = "api-v1"
