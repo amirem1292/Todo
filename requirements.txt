@@ -1,0 +1,7 @@
+Django
+python-decouple
+Pillow
+djangorestframework
+markdown
+django-filter
+coreapi
